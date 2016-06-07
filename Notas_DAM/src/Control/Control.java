@@ -127,7 +127,16 @@ public class Control {
 			}
 		});
 	}
-
+/**
+ * 
+ * @param columna
+ * @param Tabla
+ * @param condiciones
+ * @param dtm
+ */
+	public void cargarMateriales(String columna,String Tabla,String condiciones,DefaultTableModel dtm){
+	model.consultaMateriales( columna, Tabla,condiciones, dtm);
+	}
 	
 
 	/**

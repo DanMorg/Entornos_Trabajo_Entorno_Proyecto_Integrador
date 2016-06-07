@@ -27,6 +27,7 @@ public class Model {
 	private String[][] table;
 	private String[] comboBox;
 	private Ap ap;
+	
 	public Model(){
 		try {
 			conexion();
@@ -319,14 +320,13 @@ public class Model {
 				String mi_user = propiedades.getProperty("usuario");// usuario de Oracle
 				String mi_pass = propiedades.getProperty("clave");// Password de Oracle
 				
-//				System.out.println("Direcion url: "+mi_url);
-//				System.out.println("Usuaro "+mi_user);
-//				System.out.println("Contraseña "+mi_pass);
+				System.out.println("Direcion url: "+mi_url);
+				System.out.println("Usuaro "+mi_user);
+				System.out.println("Contraseña "+mi_pass);
 				
 				conet = DriverManager.getConnection(mi_url, mi_user, mi_pass);
 				JOptionPane.showMessageDialog(null, "Conexion establecida con la Base de Datos");
-				
-				config.setConexion1(mi_url,mi_user,mi_pass);
+//				config.setConexion(mi_url,mi_user,mi_pass);
 			} else
 				System.err.println("Fichero no encontrado");
 		} catch (ClassNotFoundException e) {// En caso de que no haya driver

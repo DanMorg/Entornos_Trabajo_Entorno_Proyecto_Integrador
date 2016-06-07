@@ -23,28 +23,33 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.ActionEvent;
 
 public class Ap extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
+	private JTable t_1;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTable table_1;
+	private JTable t_2;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTable table_2;
+	private JTable t_4;
 	private JTextField textField_4;
-	private JTable table_3;
+	private JTable t_5;
 	private JTextField textField_5;
-	private JTable table_4;
-	private JTable table_5;
+	private JTable t_6;
+	private JTable t_7;
 	private JTextField textField_6;
-	private JTable table_6;
+	private JTable t_3;
 	private JTextField textField_7;
 	private JTextField textField_8;
 	private Model model;
 	private Control control;
+	private DefaultTableModel dtm;
 	/**
 	 * Launch the application.
 	 */
@@ -65,6 +70,14 @@ public class Ap extends JFrame {
 	 * Create the frame.
 	 */
 	public Ap() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent e) {
+		/*Cargamos los datos de las tablas*/
+		control.cargarMateriales("NOM_ALUM ", "Alumno","", (DefaultTableModel) t_1.getModel());
+//		control.cargarMateriales ("Nom_Prof","Profesores","",(DefaultTableModel) t_2.getModel());
+			}
+		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 601, 413);
 		contentPane = new JPanel();
@@ -74,12 +87,18 @@ public class Ap extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setDefaultCloseOperation(1);
+			}
+		});
 		btnSalir.setBackground(Color.RED);
 		btnSalir.setForeground(Color.WHITE);
 
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.setForeground(Color.WHITE);
 		btnAtras.setBackground(Color.BLUE);
+		btnAtras.setEnabled(true);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
@@ -142,9 +161,10 @@ public class Ap extends JFrame {
 										.addComponent(btnCrear).addComponent(btnBorrar))))
 						.addContainerGap(29, Short.MAX_VALUE)));
 
-		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Alumno" }));
-		scrollPane.setViewportView(table);
+		t_1 = new JTable();
+		dtm=new DefaultTableModel(new Object[][] {}, new String[] { "Alumno" });
+		t_1.setModel(dtm);
+		scrollPane.setViewportView(t_1);
 		panel_3.setLayout(gl_panel_3);
 
 		JPanel panel_4 = new JPanel();
@@ -187,9 +207,9 @@ public class Ap extends JFrame {
 										.addComponent(btnCrear_1).addComponent(btnBorrar_1))))
 						.addContainerGap(38, Short.MAX_VALUE)));
 
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Profesores" }));
-		scrollPane_1.setViewportView(table_1);
+		t_2 = new JTable();
+		t_2.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Profesores" }));
+		scrollPane_1.setViewportView(t_2);
 		panel_4.setLayout(gl_panel_4);
 
 		JPanel panel_5 = new JPanel();
@@ -240,9 +260,9 @@ public class Ap extends JFrame {
 												GroupLayout.PREFERRED_SIZE)))
 										.addContainerGap(36, Short.MAX_VALUE)));
 
-		table_6 = new JTable();
-		table_6.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Modulos" }));
-		scrollPane_2.setViewportView(table_6);
+		t_3 = new JTable();
+		t_3.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Modulos" }));
+		scrollPane_2.setViewportView(t_3);
 		panel_5.setLayout(gl_panel_5);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addComponent(tabbedPane_1,
@@ -322,9 +342,9 @@ public class Ap extends JFrame {
 												scrollPane_3, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)))
 										.addContainerGap()));
 
-		table_2 = new JTable();
-		table_2.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Alumno", "Profesor", "Modulo" }));
-		scrollPane_3.setViewportView(table_2);
+		t_4 = new JTable();
+		t_4.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Alumno", "Profesor", "Modulo" }));
+		scrollPane_3.setViewportView(t_4);
 		panel_2.setLayout(gl_panel_2);
 		panel.setLayout(gl_panel);
 
@@ -393,9 +413,9 @@ public class Ap extends JFrame {
 								GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE)))
 						.addContainerGap(21, Short.MAX_VALUE)));
 
-		table_3 = new JTable();
-		table_3.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Alumno", "Nota" }));
-		scrollPane_4.setViewportView(table_3);
+		t_5 = new JTable();
+		t_5.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Alumno", "Nota" }));
+		scrollPane_4.setViewportView(t_5);
 		panel_6.setLayout(gl_panel_6);
 
 		JPanel panel_7 = new JPanel();
@@ -438,9 +458,9 @@ public class Ap extends JFrame {
 										.addComponent(btnBorrar_4))))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
-		table_4 = new JTable();
-		table_4.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Modulo", "Nota" }));
-		scrollPane_5.setViewportView(table_4);
+		t_6 = new JTable();
+		t_6.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Modulo", "Nota" }));
+		scrollPane_5.setViewportView(t_6);
 		panel_7.setLayout(gl_panel_7);
 
 		JPanel panel_8 = new JPanel();
@@ -458,9 +478,9 @@ public class Ap extends JFrame {
 						.addComponent(scrollPane_6, GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE)
 						.addContainerGap(20, Short.MAX_VALUE)));
 
-		table_5 = new JTable();
-		table_5.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nota" }));
-		scrollPane_6.setViewportView(table_5);
+		t_7 = new JTable();
+		t_7.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nota" }));
+		scrollPane_6.setViewportView(t_7);
 		panel_8.setLayout(gl_panel_8);
 		panel_1.setLayout(gl_panel_1);
 		contentPane.setLayout(gl_contentPane);
